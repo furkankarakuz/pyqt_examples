@@ -15,4 +15,5 @@ def Main():
     window.resize(300,300)
     window.show()
     sys.exit(app.exec())
+
 Main()
