@@ -7,8 +7,11 @@ import sys
 
 def accept_clicked():
     print("Accept Button Clicked")
+
+
 def cancel_clicked():
     print("Cancel Button Clicked")
+
 
 def Main():
     app = QApplication(sys.argv)
@@ -28,5 +31,6 @@ def Main():
     window.setLayout(v_box)
     window.show()
     sys.exit(app.exec())
+
 
 Main()

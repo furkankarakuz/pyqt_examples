@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 
 import sys
 
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
@@ -25,8 +26,9 @@ class Window(QWidget):
         self.show()
 
     def clicked(self):
-        self.number+=1
-        self.label.setText('<b><font size="+3">%s times clicked<font></b>'%(str(self.number)))
+        self.number += 1
+        self.label.setText(
+            '<b><font size="+3">%s times clicked<font></b>' % (str(self.number)))
 
 
 app = QApplication(sys.argv)

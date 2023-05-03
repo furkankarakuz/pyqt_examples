@@ -5,14 +5,16 @@ from PyQt5.QtCore import *
 import sys
 import random
 
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle("PyQt5 Button Test")
 
-        self.label = QLabel('<b><font color="blue" size="+3">Hello World</font></b>')
-        
+        self.label = QLabel(
+            '<b><font color="blue" size="+3">Hello World</font></b>')
+
         self.button = QPushButton("Click")
         self.button.clicked.connect(self.clicked)
 
@@ -24,11 +26,13 @@ class Window(QWidget):
         self.show()
 
     def clicked(self):
-        self.selected_color=random.choice(['red','green','blue','orange','yellow','brown','purple','pink'])
-        self.label.setText('<b><font color="%s" size="+3">Hello World</font></b>'%(self.selected_color))
+        self.selected_color = random.choice(
+            ['red', 'green', 'blue', 'orange', 'yellow', 'brown', 'purple', 'pink'])
+        self.label.setText(
+            '<b><font color="%s" size="+3">Hello World</font></b>' % (self.selected_color))
         print(self.selected_color)
 
-    
+
 app = QApplication(sys.argv)
 window = Window()
 window.show()

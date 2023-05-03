@@ -2,11 +2,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-import os,sys
+import os
+import sys
+
 
 class Panel(QDialog):
-    def __init__(self,parent=None):
-        super(Panel,self).__init__(parent)
+    def __init__(self, parent=None):
+        super(Panel, self).__init__(parent)
 
         self.panel = app.clipboard()
 
@@ -19,20 +21,19 @@ class Panel(QDialog):
         v_box.addWidget(self.content)
         v_box.addWidget(self.label)
 
-
-        content_button=QPushButton("Add Content on Panel")
+        content_button = QPushButton("Add Content on Panel")
         v_box.addWidget(content_button)
         content_button.clicked.connect(self.add_content)
 
-        image_button=QPushButton("Add Image on Panel")
+        image_button = QPushButton("Add Image on Panel")
         v_box.addWidget(image_button)
         image_button.clicked.connect(self.add_image)
 
-        html_button=QPushButton("Add HTML on Panel")
+        html_button = QPushButton("Add HTML on Panel")
         v_box.addWidget(html_button)
         html_button.clicked.connect(self.add_html)
 
-        dugme=QPushButton("Get from Panel")
+        dugme = QPushButton("Get from Panel")
         v_box.addWidget(dugme)
 
         dugme.clicked.connect(self.update_content)
@@ -41,21 +42,21 @@ class Panel(QDialog):
 
     def add_content(self):
         self.panel.setText(self.content.text())
-    
+
     def add_image(self):
-        self.panel.setImage(QImage("icon/image.jpg").scaled(100,125))
-    
+        self.panel.setImage(QImage("icon/image.jpg").scaled(100, 125))
+
     def add_html(self):
-        mime=QMimeData()
+        mime = QMimeData()
         mime.setHtml(
-        '<table border=1 style="border-collapse: collapse">'
-        '<tr><th bgcolor="#AABBCC">Qt Panel Content</th></tr>'
-        '<tr><td>%s</td></tr>'
-        '</table>'%(self.content.text()))
+            '<table border=1 style="border-collapse: collapse">'
+            '<tr><th bgcolor="#AABBCC">Qt Panel Content</th></tr>'
+            '<tr><td>%s</td></tr>'
+            '</table>' % (self.content.text()))
 
         self.panel.setMimeData(mime)
         self.panel.dataChanged.connect(self.warning_message)
-    
+
     def update_content(self):
         mime = self.panel.mimeData()
 
@@ -64,12 +65,12 @@ class Panel(QDialog):
         elif mime.hasHtml():
             self.label.setTextFormat(Qt.RichText)
             self.label.setText(mime.html())
-        
-        elif mime.hasImage():
-            self.label.setPixmap(self.panel.pixmap().scaled(100,125))
-            image = self.panel.pixmap()
-            result = QMessageBox.question(self,"Question","Do you want to register?",QMessageBox.Yes,QMessageBox.No)
 
+        elif mime.hasImage():
+            self.label.setPixmap(self.panel.pixmap().scaled(100, 125))
+            image = self.panel.pixmap()
+            result = QMessageBox.question(
+                self, "Question", "Do you want to register?", QMessageBox.Yes, QMessageBox.No)
 
             if result == QMessageBox.Yes:
                 files = os.listdir("icon/")
@@ -79,16 +80,14 @@ class Panel(QDialog):
                     file_name = "Panel"+str(counter)+".png"
                     if not file_name in files:
                         break
-                    counter+=1
+                    counter += 1
 
                 image.save("icon/"+file_name)
 
     def warning_message(self):
-        QMessageBox.warning(self,"Updated","Data Updated on the Panel")
+        QMessageBox.warning(self, "Updated", "Data Updated on the Panel")
 
 
-
-
-app=QApplication(sys.argv)
-window=Panel()
+app = QApplication(sys.argv)
+window = Panel()
 sys.exit(app.exec())

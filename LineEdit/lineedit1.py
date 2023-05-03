@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 
 import sys
 
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
@@ -18,18 +19,17 @@ class Window(QWidget):
 
         self.clear.clicked.connect(self.clicked)
         self.printer.clicked.connect(self.clicked)
-        
+
         v_box = QVBoxLayout()
         v_box.addWidget(self.line)
         v_box.addWidget(self.clear)
         v_box.addWidget(self.printer)
 
-
         self.setLayout(v_box)
         self.show()
-    
+
     def clicked(self):
-        if self.sender().text()=="Clear":
+        if self.sender().text() == "Clear":
             self.line.clear()
         else:
             print(self.line.text())
@@ -38,4 +38,4 @@ class Window(QWidget):
 app = QApplication(sys.argv)
 window = Window()
 window.show()
-sys.exit(app.exec())        
+sys.exit(app.exec())

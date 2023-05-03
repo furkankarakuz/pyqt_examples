@@ -4,10 +4,12 @@ from PyQt5.QtCore import *
 
 import sys
 
+
 class MainWindow(QMainWindow):
     count = 0
-    def __init__(self,parent=None):
-        super(MainWindow,self).__init__(parent)
+
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
 
         self.mdi = QMdiArea()
         self.setCentralWidget(self.mdi)
@@ -22,21 +24,20 @@ class MainWindow(QMainWindow):
         file.triggered.connect(self.windowAction)
         self.setWindowTitle("MDI Demo")
 
-    
-    def windowAction(self,q):
+    def windowAction(self, q):
         print("Triggered")
 
-        if q.text()=="New":
+        if q.text() == "New":
             MainWindow.count = MainWindow.count+1
-        
+
             sub = QMdiSubWindow()
-            
+
             widget = QWidget()
-            
+
             v_box = QVBoxLayout()
 
             button = QPushButton("Button")
-            
+
             v_box.addWidget(button)
             widget.setLayout(v_box)
 
@@ -45,14 +46,14 @@ class MainWindow(QMainWindow):
             self.mdi.addSubWindow(sub)
 
             sub.show()
-        
-        if q.text()=="Cascade":
+
+        if q.text() == "Cascade":
             self.mdi.cascadeSubWindows()
-        
-        if q.text()=="Tailed":
+
+        if q.text() == "Tailed":
             self.mdi.tileSubWindows()
 
-    
+
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
