@@ -1,1 +1,1 @@
-# pyqt_examples
+### PyQt is a GUI (Graphical User Interface) library for the Python programming language and can be used to develop desktop applications for Python. You can create desktop applications for different platforms such as Windows, Linux, or Mac OS X.
