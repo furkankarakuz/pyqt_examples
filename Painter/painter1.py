@@ -23,15 +23,19 @@ class Main(QMainWindow):
         self.spin.setRange(1, 10)
         self.spin.valueChanged.connect(self.spin_process)
 
+        self.width_value = 1
+
         self.window_label.setPixmap(self.window_pix)
 
         self.setCentralWidget(self.window_label)
 
         self.last_x, self.last_y = None, None
-        self.width_value = 1
+
+        
         self.action_process()
         self.bar_process()
         self.menu_process()
+
 
     def action_process(self):
         self.color_action = QAction(QIcon(
