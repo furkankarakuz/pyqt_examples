@@ -28,3 +28,4 @@ Content List
 - QColorDialog
 - QPrinter
 - QEvent
+- QPainter
